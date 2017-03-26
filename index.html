@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0"/>
+<script src="scripts/TweenMax.js"></script>
+<script src="scripts/Draggable.js"></script>
+<script src="scripts/jquery.js"></script>
+<script type='application/javascript' src='scripts/fastclick.js'></script>
+<script src="scripts/randomColor.js"></script>
+<link rel="stylesheet" href="styles/w3-colors.css">
+<link rel="stylesheet" href="DayPlan.css">
+
+<body>
+	<div id="mc-master">
+		<div class="mc-hour" data-time="12 pm" data-description="" data-length="1" data-max-length="24" data-active="0" data-color=""></div>
+		<div class="mc-hour" data-time="1 am" data-description="" data-length="1" data-max-length="23" data-active="0" data-color=""></div>
+		<div class="mc-hour" data-time="2 am" data-description="" data-length="1" data-max-length="22" data-active="0" data-color=""></div>
+		<div class="mc-hour" data-time="3 am" data-description="" data-length="1" data-max-length="21" data-active="0" data-color=""></div>
+		<div class="mc-hour" data-time="4 am" data-description="" data-length="1" data-max-length="20" data-active="0" data-color=""></div>
+		<div class="mc-hour" data-time="5 am" data-description="" data-length="1" data-max-length="19" data-active="0" data-color=""></div>
+		<div class="mc-hour" data-time="6 am" data-description="" data-length="1" data-max-length="18" data-active="0" data-color=""></div>
+		<div class="mc-hour" data-time="7 am" data-description="" data-length="1" data-max-length="17" data-active="0" data-color=""></div>
+		<div class="mc-hour" data-time="8 am" data-description="" data-length="1" data-max-length="16" data-active="0" data-color=""></div>
+		<div class="mc-hour" data-time="9 am" data-description="" data-length="1" data-max-length="15" data-active="0" data-color=""></div>
+		<div class="mc-hour" data-time="10 am" data-description="" data-length="1" data-max-length="14" data-active="0" data-color=""></div>
+		<div class="mc-hour" data-time="11 am" data-description="" data-length="1" data-max-length="13" data-active="0" data-color=""></div>
+		<div class="mc-hour" data-time="12 am" data-description="" data-length="1" data-max-length="12" data-active="0" data-color=""></div>
+		<div class="mc-hour" data-time="1 pm" data-description="" data-length="1" data-max-length="11" data-active="0" data-color=""></div>
+		<div class="mc-hour" data-time="2 pm" data-description="" data-length="1" data-max-length="10" data-active="0" data-color=""></div>
+		<div class="mc-hour" data-time="3 pm" data-description="" data-length="1" data-max-length="9" data-active="0" data-color=""></div>
+		<div class="mc-hour" data-time="4 pm" data-description="" data-length="1" data-max-length="8" data-active="0" data-color=""></div>
+		<div class="mc-hour" data-time="5 pm" data-description="" data-length="1" data-max-length="7" data-active="0" data-color=""></div>
+		<div class="mc-hour" data-time="6 pm" data-description="" data-length="1" data-max-length="6" data-active="0" data-color=""></div>
+		<div class="mc-hour" data-time="7 pm" data-description="" data-length="1" data-max-length="5" data-active="0" data-color=""></div>
+		<div class="mc-hour" data-time="8 pm" data-description="" data-length="1" data-max-length="4" data-active="0" data-color=""></div>
+		<div class="mc-hour" data-time="9 pm" data-description="" data-length="1" data-max-length="3" data-active="0" data-color=""></div>
+		<div class="mc-hour" data-time="10 pm" data-description="" data-length="1" data-max-length="2" data-active="0" data-color=""></div>
+		<div class="mc-hour" data-time="11 pm" data-description="" data-length="1" data-max-length="1" data-active="0" data-color=""></div>
+		<div id="mc-clock">
+			<div id="mc-clock-details">
+				<div id="mc-current-activity"></div>
+				<div id="mc-current-time"></div>
+			</div>
+		</div>
+	</div>
+	
+	<script>
+		FastClick.attach(document.body);
+	</script>
+
+	<script src="DayPlan.js" onload="new DayPlan('.mc-hour');"></script>
+	
+</body>
+
+</html>
