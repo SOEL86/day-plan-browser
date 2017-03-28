@@ -63,6 +63,7 @@ var Clock = function () {
 var Activity = function (int, obj) {
 	this.idx = int;
 	this.ele = obj;
+    this.lengthControl = null;
 
 	//at this point, localStorage may have altered the dom attributes, so when an activity is loaded in a new session, it must know if it's active or not.
 	if (this.getActive()) {
@@ -111,8 +112,8 @@ var DayPlan = function (item) {
 };
 
 //after the controls are added to an activity, we want to find them
-Activity.prototype.getLengthControl = function () {
-	return this.ele.find(".mc-length");
+Activity.prototype.setLengthControl = function () {
+	this.lengthControl = this.ele.find(".mc-length");
 };
 
 //after drawing the length control to the screen, we want to make it control things
@@ -124,9 +125,8 @@ Activity.prototype.enableLengthControl = function () {
 		addedLength = 0,
 		previousAddedLength = 0,
 		maxLength = activity.getMaxLength();
-	
 	//this is our controller
-	Draggable.create(this.getLengthControl(), {
+	Draggable.create(this.lengthControl, {
 		//only up and down
 		type: "y",
 		//we need to stop the mouse interacting with the other objects when we drag
@@ -274,7 +274,7 @@ Activity.prototype.getLength = function () {
 //we need a function to set the number of time slots an activity takes up and display it on the screen
 Activity.prototype.setLength = function (int) {
 	this.ele.attr("data-length", int);
-	this.getLengthControl().html(this.getLength() * 5 + " mins");
+	this.lengthControl.html(this.getLength() * 5 + " mins");
 };
 
 //we need a functions to get and set the maximum number of time slots available to the activity
@@ -341,7 +341,8 @@ Activity.prototype.activate = function () {
 		this.setColor(randomColor());
 		this.setActive(1);
 		this.applyControls();
-		
+		this.setLengthControl();
+        
 		//we need to adjust the max length of all the elements between and including the beginning of the day or previous active time slot
 		itr = this.idx;
 		while (true) {
