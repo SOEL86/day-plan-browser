@@ -15,7 +15,7 @@ var Clock = function () {
 	var clock = this,
 		
 		//percent persecond: number of seconds in a day / 100
-		perSecond = 0.0023148148,
+		perSecond = 0.02777777777,
 		
 		clockFace = $("#mc-clock"),
 		//currentActivity = $("#mc-current-activity"),
@@ -42,7 +42,7 @@ var Clock = function () {
 	//we want to show how many seconds in the day have elapsed
 	this.getTotalSeconds = function () {
 		date = new Date();
-		return date.getSeconds() + (60 * (date.getMinutes() + (60 * date.getHours())));
+		return date.getSeconds() + (60 * (date.getMinutes()));
 	};
 	
 	//we want to update the clockface:
@@ -83,7 +83,7 @@ var DayPlan = function (item) {
 	
 	//what day is it?
 	date = new Date();
-	currentDate = date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear();
+	currentDate = date.getHours() + "-" + date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear();
 	
 	//if the app saved the date last time
 	if (localStorage.getItem("date")) {
@@ -101,7 +101,7 @@ var DayPlan = function (item) {
 		$("#mc-master").html(localStorage.getItem("htmlString"));
 	}
 	
-	//now we want to enable the model and controls for each of the 24 hour time-slots
+	//now we want to enable the model and controls for each of the 12 5 minute time-slots
 	$(item).each(function (index) {
 		activities[index] = new Activity(index, $(this));
 	});
@@ -274,7 +274,7 @@ Activity.prototype.getLength = function () {
 //we need a function to set the number of time slots an activity takes up and display it on the screen
 Activity.prototype.setLength = function (int) {
 	this.ele.attr("data-length", int);
-	this.getLengthControl().html(this.getLength() + " hours");
+	this.getLengthControl().html(this.getLength() * 5 + " mins");
 };
 
 //we need a functions to get and set the maximum number of time slots available to the activity
@@ -295,7 +295,7 @@ Activity.prototype.setDescription = function (string) {
 
 //we need a function which inserts the correct time and (length)* of the activity * length always defaults to 1 when this is called
 Activity.prototype.getControlHTML = function (time, length) {
-	return "<div class='mc-time'>" + time + "</div><div class='mc-length'>" + length + " hours</div><div class='mc-description'><textarea maxlength='24'></textarea></div>";
+	return "<div class='mc-time'>" + time + "</div><div class='mc-length'>" + length + " mins</div><div class='mc-description'><textarea maxlength='24'></textarea></div>";
 };
 
 //we need a function to append the controls to the activity
@@ -414,8 +414,8 @@ Activity.prototype.deactivate = function () {
 	//set B (next-active/last element index)
 	itr = this.idx;
 	while (true) {
-		if (itr === 23) {
-			b = 23;
+		if (itr === 11) {
+			b = 11;
 			break;
 		}
 		itr = itr + 1;
